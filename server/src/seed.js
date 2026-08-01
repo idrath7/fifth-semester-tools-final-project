@@ -1,1 +1,3 @@
 
+import 'dotenv/config';import mongoose from 'mongoose';import {User,Station} from './models.js';
+await mongoose.connect(process.env.MONGODB_URI||'mongodb://127.0.0.1:27017/arcadehub');await User.findOneAndUpdate({email:'admin@arcadehub.dev'},{name:'Arcade Admin',email:'admin@arcadehub.dev',role:'admin'},{upsert:true});const stations=[['PS5 Arena 01','PlayStation',300],['Pro Billiards','Billiard',450],['Snooker Elite','Snooker',500],['PS4 Duo Zone','PlayStation',220],['Carrom Corner','Carrom',150],['Turf Prime','Turf',1200]];for(const [name,type,hourlyRate] of stations)await Station.findOneAndUpdate({name},{name,type,hourlyRate,status:'available'},{upsert:true});console.log('Seed complete');await mongoose.disconnect();
