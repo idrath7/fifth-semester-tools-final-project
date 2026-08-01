@@ -1,1 +1,8 @@
 
+{
+  "name": "server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {"dev": "node --watch src/index.js", "start": "node src/index.js", "seed": "node src/seed.js"},
+  "dependencies": {"cors":"^2.8.5","dotenv":"^16.4.7","express":"^4.21.2","firebase-admin":"^13.0.1","helmet":"^8.0.0","jsonwebtoken":"^9.0.2","mongoose":"^8.9.3","morgan":"^1.10.0"}
+}
