@@ -1,0 +1,6 @@
+import jwt from 'jsonwebtoken';
+import admin from 'firebase-admin';
+import {User} from './models.js';
+let firebaseReady=false;try{if(process.env.FIREBASE_SERVICE_ACCOUNT){admin.initializeApp({credential:admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))});firebaseReady=true}}catch(e){console.warn('Firebase Admin was not initialized:',e.message)}
+export async function auth(req,res,next){try{const token=req.headers.authorization?.replace('Bearer ','');if(!token)return res.status(401).json({message:'Authentication required'});let identity;if(firebaseReady){const decoded=await admin.auth().verifyIdToken(token);identity={firebaseUid:decoded.uid,email:decoded.email,name:decoded.name||decoded.email?.split('@')[0]}}else if(process.env.DEMO_MODE==='true'&&token==='demo-token'){identity={firebaseUid:'demo-admin',email:'admin@arcadehub.dev',name:'Demo Admin'}}else{identity=jwt.verify(token,process.env.JWT_SECRET)}req.user=await User.findOneAndUpdate({email:identity.email},{$setOnInsert:{...identity,role:identity.email==='admin@arcadehub.dev'?'admin':'user'}},{upsert:true,new:true});next()}catch(e){res.status(401).json({message:'Invalid or expired token'})}}
+export const allow=(...roles)=>(req,res,next)=>roles.includes(req.user.role)?next():res.status(403).json({message:'You do not have permission for this action'});

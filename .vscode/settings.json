@@ -1,0 +1,19 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "npm.packageManager": "npm",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "task.allowAutomaticTasks": "on",
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "mdb.connectionSaving.defaultConnectionSavingLocation": "Workspace",
+  "mdb.presetConnections": [
+    {
+      "name": "ArcadeHub Local",
+      "connectionString": "mongodb://127.0.0.1:27017/arcadehub?directConnection=true&serverSelectionTimeoutMS=5000"
+    }
+  ],
+  "files.exclude": {
+    "**/node_modules": true,
+    "client/dist": true
+  }
+}

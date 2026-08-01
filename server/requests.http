@@ -1,0 +1,10 @@
+@baseUrl = http://localhost:5000/api
+
+### API health
+GET {{baseUrl}}/health
+
+### Public station list
+GET {{baseUrl}}/stations
+
+### Filter available PlayStation stations
+GET {{baseUrl}}/stations?type=PlayStation&status=available

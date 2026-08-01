@@ -1,0 +1,8 @@
+.station-link{color:inherit;display:block}
+.card-action{margin-left:auto;background:var(--lime);color:#101500!important;padding:8px 10px;border-radius:7px;font-size:12px;font-weight:800}
+.price-filter{display:grid!important;gap:4px;color:var(--muted);font-size:12px;min-width:155px}
+.price-filter input{padding:0}
+.empty{text-align:center;color:var(--muted);padding:28px}
+.review-form{margin:18px 0}
+.review-list{display:grid;gap:12px;margin-top:18px}
+.review-list .panel p{margin-bottom:0}

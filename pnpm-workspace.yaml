@@ -1,0 +1,11 @@
+packages:
+  - client
+  - server
+onlyBuiltDependencies:
+  - esbuild
+  - "@firebase/util"
+  - protobufjs
+allowBuilds:
+  '@firebase/util': true
+  esbuild: true
+  protobufjs: true
